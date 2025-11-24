@@ -1,3 +1,6 @@
+"""Provides functions to serialize and save the entire game state to a text file, and reload it back into structured Python objects. 
+Handles parsing ship data, misses, and turn order, and reconstructs board data through Board.from_dict."""
+
 from ship import Ship
 from board import Board
 import ast
@@ -11,6 +14,9 @@ ship_specs = [
 ]
 
 def save_file(state, filename):
+
+    """It writes the state of the game to the save file in a readable and formatted way."""
+
     f = open(filename, "w")
     f.write("Turn: " + state["turn"] + "\n\n")
     f.write("Player 1 Board\n\n")
@@ -26,6 +32,9 @@ def save_file(state, filename):
     f.close()
 
 def load_file(filename):
+
+    """Reads the txt file where game is saved and forms the state of the game in a structured manner."""
+
     f = open(filename, "r")
     lines = f.readlines()
     f.close()

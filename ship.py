@@ -1,5 +1,4 @@
-""" ship.py 
-Defines the Ship class used by the Battleship game. """
+"""Defines the Ship class used by the Battleship game. """
 
 from rich.console import Console
 from rich.panel import Panel
@@ -72,6 +71,9 @@ class Ship:
         return ship
 
 def notify(message, type = "info"):
+
+    """Used to give necessary game notifications on the console in a more user-friendly way."""
+
     styles = {
         "info": "bold cyan",
         "success": "bold green",
