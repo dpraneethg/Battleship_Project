@@ -25,7 +25,7 @@ class Game_manager:
             load_state(self, self.filename)
 
     def clear_screen(self):
-        os.system("cls" if os.name == "nt" else "clear")
+        os.system("cls" if os.name == "nt" else "clear")#to clear terminal screen
 
     def setup_player(self, player_name, board: Board):
         notify(f"{player_name} Setup", "info")
@@ -142,3 +142,4 @@ class Game_manager:
             input("\nPress Enter And Pass The Ability To Kill To Your Enemy...")
             self.clear_screen()
             self.turn = "P2" if self.turn == "P1" else "P1"
+
