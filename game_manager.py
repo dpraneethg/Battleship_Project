@@ -24,10 +24,11 @@ class Game_manager:
         self.loaded = load
         self.file_names = file_names
         
-    """Loads game from existing file if load is Y. """
-
         if load == "Y":
             load_state(self, self.filename)
+        
+        """Loads game from existing file if load is Y. """
+
 
     def clear_screen(self):
         """ Clears terminal screen when called."""
