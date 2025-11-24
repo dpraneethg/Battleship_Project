@@ -4,6 +4,9 @@ from file_manager import save_file, load_state
 import sys
 import os
 
+
+""" ship_specs contains ship names and their length ."""
+
 ship_specs = [
     ("Carrier", 5),
     ("Battleship", 4),
@@ -20,14 +23,18 @@ class Game_manager:
         self.turn = "P1"
         self.loaded = load
         self.file_names = file_names
+        
+    """Loads game from existing file if load is Y. """
 
         if load == "Y":
             load_state(self, self.filename)
 
     def clear_screen(self):
-        os.system("cls" if os.name == "nt" else "clear")#to clear terminal screen
+        """ Clears terminal screen when called."""
+        os.system("cls" if os.name == "nt" else "clear")
 
     def setup_player(self, player_name, board: Board):
+        """Seting up players and placing the ships on board manully or randomly based on user input."""
         notify(f"{player_name} Setup", "info")
         choice = input("M For Manual Ship-Placing Glory, Or R To Let The Universe Roll Its Dice: ").strip().upper() or "R"
         self.clear_screen()
@@ -39,6 +46,7 @@ class Game_manager:
         notify(f"{player_name} Board Ready.", "success")
     
     def manual_place(self, board: Board, player_name):
+        """Takes in coordinates and orientation and places the ships if there is no overlapping ships are within the sea range.The user enters maunally."""
         notify("Manual Placement To Give Coordinates. H If You Want Ships To Be Lying Down Or V To Make Ships Stand Tall.", "info")
         for name, size in ship_specs:
             placed = False
@@ -78,6 +86,8 @@ class Game_manager:
         save_file(state, filename)
     
     def fire(self, attacker_name, target_board):
+        """Takes in attacker and target board and coordinates to fire at. Checks whether there is a ship in that coordinate and makes in X or otherwise O for miss.
+        If already fired there, it shows the same."""
         while True:
             command = input(f"{attacker_name}, Fire At Coordinate (Ex. D3) Or Type Quit To Quit And Save The Game And Wage War Later: ").strip().upper()
             if not command:
@@ -114,6 +124,9 @@ class Game_manager:
             break
 
     def loop(self):
+        """This is where the game loop method is made.
+        If loaded is Y ,then players are already setup. If loaded is N, then setup_player is called to setup two players.
+        Then the loop starts. Turn is shifted between the 2 players till either one player's ships are all sunk."""
         notify("Two Player Battleship Game Starts", "info")
         if (self.loaded == "N"):
             self.setup_player("Player 1", self.p1_board)
@@ -145,4 +158,5 @@ class Game_manager:
             input("\nPress Enter And Pass The Ability To Kill To Your Enemy...")
             self.clear_screen()
             self.turn = "P2" if self.turn == "P1" else "P1"
+
 
