@@ -67,6 +67,9 @@ class Game_manager:
                     notify("You Can't Place Ship On Land Or Another Ship. Try Again.", "error")
 
     def save_state(self, filename):
+
+        """Builds a dict of the full game state and passes it to save_file()."""
+
         state = {
             "p1_board": self.p1_board.to_dict(),
             "p2_board": self.p2_board.to_dict(),
