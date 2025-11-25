@@ -29,7 +29,7 @@ def num_to_alpha(row,column):
 
 #the board class
 class Board:
-    #the constructor(takes whether board is hidden or not and defines the board grid)
+    #the constructor(defines the board grid)
     def __init__(self):
         self.grid = [["~"for i in range(10)]for j in range(10)]
         self.ships={}
@@ -161,4 +161,5 @@ class Board:
         misses = data.get("misses", [])
         for x in misses:
             board.grid[x[0]-1][x[1]-1] = "O"
+
         return board
